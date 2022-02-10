@@ -2,6 +2,6 @@
     "require": {
         "symfony/dom-crawler": "^5.0",
         "symfony/css-selector": "^5.0",
-        "php-curl-class/php-curl-class": "^8.8"
+        "php-curl-class/php-curl-class": "8.8.0"
     }
 }
