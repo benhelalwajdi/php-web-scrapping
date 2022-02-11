@@ -14,19 +14,19 @@ foreach ($crawler as $domElement) {
 
 $cars=array();
 $service = new Service();
-$data = $service->data();
+/*$data = */$service->data();
 
-
+/*
 $B = $data->each(function(Crawler $span, $index){
-   // $mileage = $span-> filter('span')->text()."\n";
-    return $span->html();
+   return $span-> filter('a')->html();
+    //return $span->html();
 });
 $arrlength=count($B);
 for($x=0;$x<$arrlength;$x++)
   {
-
-    
-    $co2_emission = get_string_between($B[$x], '<span type="co2-emission" class="css-cvkptj e1hcrnma1">', '<');
+    echo $B[$x];
+    //$co2_emission = get_string_between($B[$x], '<span type="co2-emission" class="css-cvkptj e1hcrnma1">', '<');
+ /*   $co2_emission = get_string_between($B[$x], '<span type="co2-emission" class="css-cvkptj e1hcrnma1">', '<');
     $mileage = get_string_between($B[$x], '<span type="mileage" class="css-mo69i0 e1hcrnma1">', '<');
     $registration_date = get_string_between($B[$x], '<span type="registration-date" class="css-mo69i0 e1hcrnma1">', '<');
     $power = get_string_between($B[$x], '<span type="power" class="css-mo69i0 e1hcrnma1">', '<');
@@ -37,29 +37,33 @@ for($x=0;$x<$arrlength;$x++)
     $fuel_consumption = get_string_between($B[$x], '<span type="fuel-consumption" class="css-cvkptj e1hcrnma1">', '<');
     $co2_emission = get_string_between($B[$x], '<span type="co2-emission" class="css-cvkptj e1hcrnma1">', '<');
     
-    echo $registration_date."\n";
+    if(($co2_emission != '')){
+      if((int)(substr($registration_date,3)) >=2012){
+        //echo $co2_emission." \n".substr($registration_date,3)." \n";
+        $car = new Car(
+                  'null',
+                  'null',
+                  'null',
+                  $fuel_category,
+                  $mileage,
+                  $registration_date,
+                  $power,
+                  'null',
+                  'null',
+                  $co2_emission,
+                  $transmission_type,
+                  'null',
+                  'null',
+                );
 
-    /* $title, $image, $price, $fuel, $mileage, $registerDate, 
-            $power, $body, $color, $emission, $transmission, $equipement, $externalID*/
-    $car = new Car(
-      'null',
-      'null',
-      'null',
-      $fuel_category,
-      $mileage,
-      $registration_date,
-      $power,
-      'null',
-      'null',
-      $co2_emission,
-      $transmission_type,
-      'null',
-      'null',
-    );
-
-   // echo $car->toString();
+        array_push($cars,$car);
+        for($y=0;$y< count($cars);$y++){
+         // echo $cars[$y]->toString()."\n";
+        }
+      }*
+    }
   }
-
+*/
 
 function get_string_between($string, $start, $end){
     $string = ' ' . $string;

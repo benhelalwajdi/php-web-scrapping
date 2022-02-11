@@ -21,7 +21,7 @@ class Car {
     public $price ;
     public $fuel ;
     public $mileage ;
-    public $registerDate ;
+    public $registration_date ;
     public $power ;
     public $body ;
     public $color ;
@@ -30,14 +30,14 @@ class Car {
     public $externalID ;
     public $emission;
     function  __construct(
-            $title, $image, $price, $fuel, $mileage, $registerDate, 
+            $title, $image, $price, $fuel, $mileage, $registration_date, 
             $power, $body, $color, $emissions, $transmission, $equipement, $externalID){
         $this->title = $title;
         $this->image = $image;
         $this->price = $price;
         $this->fuel = $fuel;
         $this->mileage = $mileage;
-        $this->registerData = $registerDate; 
+        $this->registration_date = $registration_date; 
         $this->power = $power;
         $this->body = $body;
         $this->color = $color ;
@@ -49,7 +49,7 @@ class Car {
 
 
     function toString(){
-        echo $this->emission;
+        //echo $this->emission;
         return(
             "\n".
             "Title : ".$this->title." \n".
@@ -57,7 +57,7 @@ class Car {
             "Price : ".$this->price." \n".
             "Fuel  : ".$this->fuel." \n".
             "Mileage : ".$this->mileage." \n".
-            "Register Date : ".$this->registerDate." \n".
+            "Register Date : ".$this->registration_date." \n".
             "Power : ".$this->power." \n".
             "Body : ".$this->body." \n".
             "Color : ".$this->color." \n".
