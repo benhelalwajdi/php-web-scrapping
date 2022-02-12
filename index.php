@@ -6,64 +6,10 @@ require_once("./Service.php");
 use Symfony\Component\DomCrawler\Crawler;
 use Curl\Curl;
 
-//$crawler = new Crawler($html);
-/*
-foreach ($crawler as $domElement) {
-    var_dump($domElement->nodeName);
-}*/
-
 $cars=array();
 $service = new Service();
-/*$data = */$service->data();
+$service->data_autoscout24();
 
-/*
-$B = $data->each(function(Crawler $span, $index){
-   return $span-> filter('a')->html();
-    //return $span->html();
-});
-$arrlength=count($B);
-for($x=0;$x<$arrlength;$x++)
-  {
-    echo $B[$x];
-    //$co2_emission = get_string_between($B[$x], '<span type="co2-emission" class="css-cvkptj e1hcrnma1">', '<');
- /*   $co2_emission = get_string_between($B[$x], '<span type="co2-emission" class="css-cvkptj e1hcrnma1">', '<');
-    $mileage = get_string_between($B[$x], '<span type="mileage" class="css-mo69i0 e1hcrnma1">', '<');
-    $registration_date = get_string_between($B[$x], '<span type="registration-date" class="css-mo69i0 e1hcrnma1">', '<');
-    $power = get_string_between($B[$x], '<span type="power" class="css-mo69i0 e1hcrnma1">', '<');
-    $offer_type = get_string_between($B[$x], '<span type="offer-type" class="css-mo69i0 e1hcrnma1">', '<');
-    $previous_owners = get_string_between($B[$x], '<span type="previous-owners" class="css-mo69i0 e1hcrnma1">', '<');
-    $transmission_type = get_string_between($B[$x], '<span type="transmission-type" class="css-mo69i0 e1hcrnma1">', '<');
-    $fuel_category = get_string_between($B[$x], '<span type="fuel-category" class="css-cvkptj e1hcrnma1">', '<');
-    $fuel_consumption = get_string_between($B[$x], '<span type="fuel-consumption" class="css-cvkptj e1hcrnma1">', '<');
-    $co2_emission = get_string_between($B[$x], '<span type="co2-emission" class="css-cvkptj e1hcrnma1">', '<');
-    
-    if(($co2_emission != '')){
-      if((int)(substr($registration_date,3)) >=2012){
-        //echo $co2_emission." \n".substr($registration_date,3)." \n";
-        $car = new Car(
-                  'null',
-                  'null',
-                  'null',
-                  $fuel_category,
-                  $mileage,
-                  $registration_date,
-                  $power,
-                  'null',
-                  'null',
-                  $co2_emission,
-                  $transmission_type,
-                  'null',
-                  'null',
-                );
-
-        array_push($cars,$car);
-        for($y=0;$y< count($cars);$y++){
-         // echo $cars[$y]->toString()."\n";
-        }
-      }*
-    }
-  }
-*/
 
 function get_string_between($string, $start, $end){
     $string = ' ' . $string;
@@ -73,3 +19,106 @@ function get_string_between($string, $start, $end){
     $len = strpos($string, $end, $ini) - $ini;
     return substr($string, $ini, $len);
 }
+/*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .wrapper{
+            width: 600px;
+            margin: 0 auto;
+        }
+        table tr td:last-child{
+            width: 120px;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mt-5 mb-3 clearfix">
+                        <h2 class="pull-left">Cars Details</h2>
+                        <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i>Scarp new cars</a>
+                    </div>
+                    <?php
+                    // Include config file
+                    require_once "config.php";
+
+                    // Attempt select query execution
+                    $sql = "SELECT * FROM Cars";
+                    if($result = $mysqli->query($sql)){
+                        if($result->num_rows > 0){
+                            echo '<table class="table table-bordered table-striped">';
+                                echo "<thead>";
+                                    echo "<tr>";
+                                        echo "<th>#</th>";
+                                        echo "<th>title</th>";
+                                        echo "<th>transmission</th>";
+                                        echo "<th>registerDate</th>";
+                                        echo "<th>reg_date</th>";
+                                        echo "<th>price</th>";
+                                        echo "<th>power</th>";
+                                        echo "<th>mileage</th>";
+                                        echo "<th>image</th>";
+                                        echo "<th>fuel</th>";
+                                        echo "<th>externalID</th>";
+                                        echo "<th>equipement</th>";
+                                        echo "<th>emission</th>";
+                                        echo "<th>color</th>";
+                                        echo "<th>body</th>";
+                                    echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while($row = $result->fetch_array()){
+                                    echo "<tr>";
+                                        echo "<td>" . $row['id'] . "</td>";
+                                        echo "<td>" . $row['title'] . "</td>";
+                                        echo "<td>" . $row['transmission'] . "</td>";
+                                        echo "<td>" . $row['registerDate'] . "</td>";
+                                        echo "<td>" . $row['reg_date'] . "</td>";
+                                        echo "<td>" . $row['price'] . "</td>";
+                                        echo "<td>" . $row['power'] . "</td>";
+                                        echo "<td>" . $row['mileage'] . "</td>";
+                                        echo "<td>" . $row['image'] . "</td>";
+                                        echo "<td>" . $row['fuel'] . "</td>";
+                                        echo "<td>" . $row['externalID'] . "</td>";
+                                        echo "<td>" . $row['equipement'] . "</td>";
+                                        echo "<td>" . $row['emission'] . "</td>";
+                                        echo "<td>" . $row['color'] . "</td>";
+                                        echo "<td>" . $row['body'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";                            
+                            echo "</table>";
+                            // Free result set
+                            $result->free();
+                        } else{
+                            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                        }
+                    } else{
+                        echo "Oops! Something went wrong. Please try again later.";
+                    }
+                    
+                    // Close connection
+                    $mysqli->close();
+                    ?>
+                </div>
+            </div>        
+        </div>
+    </div>
+</body>
+</html>
+*/
