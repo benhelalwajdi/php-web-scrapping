@@ -108,6 +108,7 @@ function data_autoscout24(){
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
+
         */
         
             var_dump($cars[$y]->toString()."\n");
